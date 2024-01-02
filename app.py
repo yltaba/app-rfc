@@ -27,9 +27,9 @@ if uploaded_files:
     final_df.to_excel(towrite, index=False)
     towrite.seek(0) 
 
-    st.download_button(label="📥 Download Consolidated Excel",
+    st.download_button(label="📥 Download Final Excel",
                        data=towrite,
-                       file_name='concatenated.xlsx',
+                       file_name='rfc_complete.xlsx',
                        mime="application/vnd.ms-excel")
 
                        
