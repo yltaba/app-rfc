@@ -2,13 +2,15 @@ import streamlit as st
 import pandas as pd
 from io import BytesIO
 
-st.title('File Consolidator')
+st.title('Caldic LATAM - File Consolidator')
 
 with st.expander("Read more:"):
     st.write("""
-             This application consolidates files for RFC LAN process. 
+             This application consolidate Excel files that are in the same structure, matching all columns sequentially and its headers). 
              
-             **All files must be in the same template (matching the number of columns and columns' names).**
+             The output is a single Excel file that is available on the "Download Final Excel" below.
+
+             **All files must be in the same template.**
             """)
 
 uploaded_files = st.file_uploader("Upload RFC's Excel files", accept_multiple_files=True)
