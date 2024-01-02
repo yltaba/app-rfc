@@ -6,9 +6,9 @@ st.title('Caldic LATAM - File Consolidator')
 
 with st.expander("Read more:"):
     st.write("""
-             This application consolidate Excel files that are in the same structure, matching all columns sequentially and its headers). 
+             This application consolidates Excel files that have the same structure, matching all columns and their headers sequentially.
              
-             The output is a single Excel file that is available on the "Download Final Excel" below.
+             The output is a single Excel file available on the "Download Final Excel" button below.
 
              **All files must be in the same template.**
             """)
