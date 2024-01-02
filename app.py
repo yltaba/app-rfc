@@ -5,7 +5,11 @@ from io import BytesIO
 st.title('File Consolidator')
 
 with st.expander("Read more:"):
-    st.write("This application consolidates files for RFC LAN process. All files must be in the same template (matching the number of columns and columns' names):")
+    st.write("""
+             This application consolidates files for RFC LAN process. 
+             
+             **All files must be in the same template (matching the number of columns and columns' names).**
+            """)
 
 uploaded_files = st.file_uploader("Upload RFC's Excel files", accept_multiple_files=True)
 
