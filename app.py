@@ -13,7 +13,7 @@ with st.expander("Read more:"):
              **All files must be in the same template.**
             """)
 
-uploaded_files = st.file_uploader("Upload RFC's Excel files", accept_multiple_files=True)
+uploaded_files = st.file_uploader("Upload Excel files", accept_multiple_files=True)
 
 def process_files(uploaded_files):
     df_list = []
