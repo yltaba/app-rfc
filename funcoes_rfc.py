@@ -1,5 +1,4 @@
 import pandas as pd
-import unidecode
 import numpy as np
 import janitor
 
@@ -36,7 +35,22 @@ def ponderar_ppc(ppc):
         'country', 'warehouse', 'product_code', 
         'product_desc', 'stock_ton', 'ppc_sin_almacenaje'
     ]].copy()
-    ppc['country'] = [unidecode.unidecode(string) for string in ppc['country']]
+
+
+    # Define a mapping of accented characters to their unaccented equivalents
+    accents_mapping = {
+        'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U',
+        'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
+        'Ñ': 'N', 'ñ': 'n',
+        # Add more mappings as needed
+    }
+
+    # Function to remove accents from a string
+    def remove_accents(input_str):
+        return ''.join(accents_mapping.get(char, char) for char in input_str)
+
+    # Apply the function to your DataFrame column
+    ppc['country'] = ppc['country'].apply(remove_accents)
 
     ppc['ppc_sin_almacenaje'] = ppc['ppc_sin_almacenaje'] / 1000
     ppc['total_stock_ton'] = ppc.groupby(['country', 'product_code'], as_index=False).stock_ton.transform('sum')
@@ -102,7 +116,21 @@ def tratar_base_vendas(test_comercial, de_para_bu):
 
     # ajustes pais
     test_comercial['pais_compania'] = test_comercial.pais_compania.str.upper()
-    test_comercial['pais_compania'] = [unidecode.unidecode(string) for string in test_comercial['pais_compania']]
+
+    # Define a mapping of accented characters to their unaccented equivalents
+    accents_mapping = {
+        'Á': 'A', 'É': 'E', 'Í': 'I', 'Ó': 'O', 'Ú': 'U',
+        'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u',
+        'Ñ': 'N', 'ñ': 'n',
+    # Add more mappings as needed
+    }
+
+    # Function to remove accents from a string
+    def remove_accents(input_str):
+        return ''.join(accents_mapping.get(char, char) for char in input_str)
+
+    # Apply the function to your DataFrame column
+    test_comercial['pais_compania'] = test_comercial['pais_compania'].apply(remove_accents)
 
     # datas
     test_comercial['fecha'] = pd.to_datetime(test_comercial.fecha, dayfirst=True)
