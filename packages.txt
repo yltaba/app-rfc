@@ -1,2 +1,0 @@
-funcoes_rfc
-unidecode
