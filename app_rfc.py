@@ -111,7 +111,6 @@ if rfc_uploaded and st.button('Run valuation'):
         rfc_custo_margem.to_excel(towrite, index=False)
         towrite.seek(0)
 
-        st.success("Volume valuation done!")
         st.download_button(label="📥 Download Valuated RFC",
                 data=towrite,
                 file_name='rfc_valuation_model.xlsx',
