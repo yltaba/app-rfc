@@ -102,6 +102,7 @@ if rfc_uploaded and st.button('Run valuation'):
         # resultados
         rfc_custo_margem['month'] = pd.to_datetime(rfc_custo_margem['month'], dayfirst=True)
 
+        st.success("Volume valuation done!")
         st.dataframe(
             rfc_custo_margem
             .loc[rfc_custo_margem['month'] == '2024-01-01']
@@ -110,18 +111,21 @@ if rfc_uploaded and st.button('Run valuation'):
                 'volume_ton':'sum',
                 'gross_profit'+MODELO:'sum'
             })
-            .sort_values(['gross_profit'+MODELO])
+            .sort_values(['gross_profit'+MODELO], ascending=False)
             .round(2)
+            .reset_index(drop=True)
         )
 
+        st.write(rfc_custo_margem.month.unique())
 
-        # EXPORT EXCEL
-        towrite = BytesIO()
-        rfc_custo_margem.sample(20000).to_excel(towrite, index=False)
-        towrite.seek(0)
 
-        st.success("Volume valuation done!")
-        st.download_button(label="📥 Download Valuated RFC",
-                data=towrite,
-                file_name='rfc_valuation_model.xlsx',
-                mime="application/vnd.ms-excel")
+        # # EXPORT EXCEL
+        # towrite = BytesIO()
+        # rfc_custo_margem.sample(20000).to_excel(towrite, index=False)
+        # towrite.seek(0)
+
+        # st.success("Volume valuation done!")
+        # st.download_button(label="📥 Download Valuated RFC",
+        #         data=towrite,
+        #         file_name='rfc_valuation_model.xlsx',
+        #         mime="application/vnd.ms-excel")
