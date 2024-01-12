@@ -102,8 +102,7 @@ if rfc_uploaded and st.button('Run valuation'):
 
         rfc_custo_margem = rfc_custo_margem.loc[
             rfc_custo_margem['month'].isin([
-                '2024-02-01', '2024-03-01', '2024-04-01', 
-                '2024-05-01', '2024-06-01', '2024-07-01' 
+                '2024-02-01', '2024-03-01', '2024-04-01'
             ])
         ].copy()
 
@@ -125,7 +124,7 @@ if rfc_uploaded and st.button('Run valuation'):
         st.success("Volume valuation done!")
         st.dataframe(
             rfc_custo_margem
-            .loc[rfc_custo_margem['month'] == '2024-01-01']
+            .loc[rfc_custo_margem['month'] == '2024-02-01']
             .groupby(['from_country', 'month'], as_index=False)
             .agg({
                 'volume_ton':'sum',
