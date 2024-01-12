@@ -114,9 +114,10 @@ if rfc_uploaded and st.button('Run valuation'):
             .round(2)
         )
 
+
         # EXPORT EXCEL
         towrite = BytesIO()
-        rfc_custo_margem.to_excel(towrite, index=False)
+        rfc_custo_margem.sample(20000).to_excel(towrite, index=False)
         towrite.seek(0)
 
         st.success("Volume valuation done!")
