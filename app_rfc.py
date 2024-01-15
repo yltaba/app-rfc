@@ -66,22 +66,32 @@ if rfc_uploaded and st.button('Run valuation'):
 
         # custos
         custo_ppc = funcoes_rfc.ponderar_ppc(ppc)
-        test_comercial, test_comercial_l12m = funcoes_rfc.tratar_base_vendas(test_comercial=test_comercial, de_para_bu=de_para_bu)
+        test_comercial, test_comercial_l12m = funcoes_rfc.tratar_base_vendas(test_comercial=test_comercial, 
+                                                                             de_para_bu=de_para_bu)
         custo_base_vendas = funcoes_rfc.calcular_custo_base_vendas_l3m(test_comercial_l12m)
 
         # margens
         margem_l3m = funcoes_rfc.calcular_margem_l3m(test_comercial_l12m)
         margem_l6m = funcoes_rfc.calcular_margem_l6m(test_comercial_l12m)
         margem_l12m = funcoes_rfc.calcular_margem_l12m(test_comercial_l12m)
-        margem_temp1 = pd.merge(margem_l12m, margem_l6m, on=['from_country', 'bu', 'cod_product'], how='left')
-        margem_base_vendas = pd.merge(margem_temp1, margem_l3m, on=['from_country', 'bu', 'cod_product'], how='left')
+        margem_temp1 = pd.merge(margem_l12m, 
+                                margem_l6m, 
+                                on=['from_country', 'bu', 'cod_product'], 
+                                how='left')
+        margem_base_vendas = pd.merge(margem_temp1, 
+                                      margem_l3m, 
+                                      on=['from_country', 'bu', 'cod_product'], 
+                                      how='left')
         for col in margem_base_vendas.columns:
             if 'margem' in col:
                 margem_base_vendas[col] = margem_base_vendas[col].fillna(0)
 
         # valoração RFC
         rfc = funcoes_rfc.importar_tratar_rfc(rfc, de_para_bu)
-        rfc_custo_margem = funcoes_rfc.incluir_custo_preco_base_rfc(rfc, custo_base_vendas, custo_ppc, margem_base_vendas)
+        rfc_custo_margem = funcoes_rfc.incluir_custo_preco_base_rfc(rfc, 
+                                                                    custo_base_vendas, 
+                                                                    custo_ppc, 
+                                                                    margem_base_vendas)
         rfc_custo_margem = funcoes_rfc.definir_custo(rfc_custo_margem)
         rfc_custo_margem = funcoes_rfc.definir_margem(rfc_custo_margem)
         rfc_custo_margem = funcoes_rfc.calcular_custo_receita_gp(rfc_custo_margem)
@@ -100,11 +110,11 @@ if rfc_uploaded and st.button('Run valuation'):
         })
 
 
-        rfc_custo_margem = rfc_custo_margem.loc[
-            rfc_custo_margem['month'].isin([
-                '2024-02-01', '2024-03-01', '2024-04-01'
-            ])
-        ].copy()
+        # rfc_custo_margem = rfc_custo_margem.loc[
+        #     rfc_custo_margem['month'].isin([
+        #         '2024-02-01', '2024-03-01', '2024-04-01'
+        #     ])
+        # ].copy()
 
         # EXPORT EXCEL
         towrite = BytesIO()
