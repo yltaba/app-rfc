@@ -29,18 +29,18 @@ with st.expander("Read more:"):
     )
 
 # parâmetros e bases
-MES0 = '12-2023'
-MES1 = '11-2023'
-MES2 = '10-2023'
-MES3 = '9-2023'
-MES4 = '8-2023'
-MES5 = '7-2023'
-MES6 = '6-2023'
-MES7 = '5-2023'
-MES8 = '4-2023'
-MES9 = '3-2023'
-MES10 = '2-2023'
-MES11 = '1-2023'
+MES0 = '01-2024'
+MES1 = '12-2023'
+MES2 = '11-2023'
+MES3 = '10-2023'
+MES4 = '9-2023'
+MES5 = '8-2023'
+MES6 = '7-2023'
+MES7 = '6-2023'
+MES8 = '5-2023'
+MES9 = '4-2023'
+MES10 = '3-2023'
+MES11 = '2-2023'
 MES12 = '1-2023'
 
 l3m = [MES1, MES2, MES3]
@@ -51,7 +51,7 @@ l12m = [MES1, MES2, MES3, MES4, MES5, MES6, MES7, MES8, MES9, MES10, MES11, MES1
 # Imports
 PATH = r'C:/Users/y.lucatelli.CALDICCGN/Caldic Global/Business Analytics - Documentos/Python_Consultas/projetos_python/01_RFC/LAN/2024/RFC 1/bases/'
 BASE_PPC = 'Adherence Details by Product.xlsx'
-BASE_VENDAS = 'Report_CIAL_2023.xlsx'
+BASE_VENDAS = 'vendas_commercial_performance.xlsx'
 
 test_comercial = pd.read_excel(BASE_VENDAS, sheet_name='base_modelo')
 ppc = pd.read_excel(BASE_PPC)
