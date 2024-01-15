@@ -116,12 +116,12 @@ if rfc_uploaded and st.button('Run valuation'):
         })
 
 
-        excel_ajustado = funcoes_rfc.ajustar_excel(rfc_custo_margem, arquivo_output, hoje)
+        EXCEL_AJUSTADO = funcoes_rfc.ajustar_excel(rfc_custo_margem, arquivo_output, hoje)
 
 
         # EXPORT EXCEL
         towrite = BytesIO()
-        with open(excel_ajustado, 'rb') as f:
+        with open(EXCEL_AJUSTADO, 'rb') as f:
             towrite.write(f.read())
         towrite.seek(0)
 
