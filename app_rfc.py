@@ -1,8 +1,14 @@
 import pandas as pd
 import streamlit as st
 from io import BytesIO
+from openpyxl import load_workbook
 
 import funcoes_rfc
+
+
+hoje = '15012024'
+arquivo_output = 'rfc_02_lan'
+
 
 # apresentação app
 st.title("RFC LAN - Volume Valuation Model")
@@ -110,21 +116,19 @@ if rfc_uploaded and st.button('Run valuation'):
         })
 
 
-        # rfc_custo_margem = rfc_custo_margem.loc[
-        #     rfc_custo_margem['month'].isin([
-        #         '2024-02-01', '2024-03-01', '2024-04-01'
-        #     ])
-        # ].copy()
+        excel_ajustado = funcoes_rfc.ajustar_excel(rfc_custo_margem, arquivo_output, hoje)
+
 
         # EXPORT EXCEL
         towrite = BytesIO()
-        rfc_custo_margem.to_excel(towrite, index=False)
+        with open(excel_ajustado, 'rb') as f:
+            towrite.write(f.read())
         towrite.seek(0)
 
         st.download_button(label="📥 Download Valuated RFC",
-                data=towrite,
-                file_name='rfc_valuation_model.xlsx',
-                mime="application/vnd.ms-excel")
+                        data=towrite,
+                        file_name='rfc_valuation_model.xlsx',
+                        mime="application/vnd.ms-excel")
 
         # resultados
 

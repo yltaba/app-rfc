@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import janitor
+from openpyxl import load_workbook
 
 MES0 = '1-2024'
 MES1 = '12-2023'
@@ -485,3 +486,35 @@ def calcular_custo_receita_gp(df):
     df['gross_profit'] = df['receita'] - df['custo_total']
 
     return df
+
+# Exports
+
+def ajustar_excel(rfc_custo_margem, arquivo_output, hoje):
+    rfc_custo_margem['margin_pct_adj'] = rfc_custo_margem['margem_final_modelo']
+    file_path = arquivo_output + '_' + hoje + '.xlsx'
+    rfc_custo_margem.to_excel(file_path, sheet_name='rfc', index=False)
+
+    wb = load_workbook(file_path)
+    rfc_excel = wb['rfc']
+
+    rfc_excel['AF1'] = 'net_revenue_adj'
+    for row in rfc_excel.iter_rows(min_row=2, max_col=32):
+        v = row[21]  # volume_ton
+        ae = row[30] # margin_pct_adj
+        w = row[22] # custo_final_modelo
+        af = row[31] # net_revenue_adj
+
+        af.value = f'=({w.coordinate} / (1 - {ae.coordinate})) * {v.coordinate}'
+
+    rfc_excel['AG1'] = 'gross_profit_adj'
+    for row in rfc_excel.iter_rows(min_row=2, max_col=33):
+        af = row[31] # net revenue adj
+        ac = row[28] # custo_total_modelo
+        ag = row[32] # gross_profit_adj
+
+        ag.value = f'= {af.coordinate} - {ac.coordinate}'
+
+    wb.save(file_path)
+    return file_path
+
+
