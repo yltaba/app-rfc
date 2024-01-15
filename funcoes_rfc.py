@@ -2,23 +2,23 @@ import pandas as pd
 import numpy as np
 import janitor
 
-mes0 = '12-2023'
-mes1 = '11-2023'
-mes2 = '10-2023'
-mes3 = '9-2023'
-mes4 = '8-2023'
-mes5 = '7-2023'
-mes6 = '6-2023'
-mes7 = '5-2023'
-mes8 = '4-2023'
-mes9 = '3-2023'
-mes10 = '2-2023'
-mes11 = '1-2023'
-mes12 = '1-2023'
+MES0 = '1-2024'
+MES1 = '12-2023'
+MES2 = '11-2023'
+MES3 = '10-2023'
+MES4 = '9-2023'
+MES5 = '8-2023'
+MES6 = '7-2023'
+MES7 = '6-2023'
+MES8 = '5-2023'
+MES9 = '4-2023'
+MES10 = '3-2023'
+MES11 = '2-2023'
+MES12 = '1-2023'
 
-l3m = [mes1, mes2, mes3]
-l6m = [mes1, mes2, mes3, mes4, mes5, mes6]
-l12m = [mes1, mes2, mes3, mes4, mes5, mes6, mes7, mes8, mes9, mes10, mes11, mes12]
+l3m = [MES1, MES2, MES3]
+l6m = [MES1, MES2, MES3, MES4, MES5, MES6]
+l12m = [MES1, MES2, MES3, MES4, MES5, MES6, MES7, MES8, MES9, MES10, MES11, MES12]
 
 # PPC
 def ponderar_ppc(ppc):
@@ -149,8 +149,8 @@ def tratar_base_vendas(test_comercial, de_para_bu):
     
     test_comercial = test_comercial[~test_comercial.nombre_cliente.str.contains('GTM')]
     test_comercial_l12m = test_comercial[test_comercial.mes_ano.isin([
-        mes1, mes2, mes3, mes4, mes5, mes6, 
-        mes7, mes8, mes9, mes10, mes11, mes12
+        MES1, MES2, MES3, MES4, MES5, MES6, 
+        MES7, MES8, MES9, MES10, MES11, MES12
         ])]
 
     return test_comercial, test_comercial_l12m
@@ -193,18 +193,18 @@ def calcular_custo_base_vendas_l3m(df_vendas_l3m):
 
 
     custo_base_vendas = custo_base_vendas.rename(columns={
-        mes1:mes1+'_custo_base_vendas',
-        mes2:mes2+'_custo_base_vendas',
-        mes3:mes3+'_custo_base_vendas',
-        mes4:mes4+'_custo_base_vendas',
-        mes5:mes5+'_custo_base_vendas',
-        mes6:mes6+'_custo_base_vendas',
-        mes7:mes7+'_custo_base_vendas',
-        mes8:mes8+'_custo_base_vendas',
-        mes9:mes9+'_custo_base_vendas',
-        mes10:mes10+'_custo_base_vendas',
-        mes11:mes11+'_custo_base_vendas',
-        mes12:mes12+'_custo_base_vendas'
+        MES1:MES1+'_custo_base_vendas',
+        MES2:MES2+'_custo_base_vendas',
+        MES3:MES3+'_custo_base_vendas',
+        MES4:MES4+'_custo_base_vendas',
+        MES5:MES5+'_custo_base_vendas',
+        MES6:MES6+'_custo_base_vendas',
+        MES7:MES7+'_custo_base_vendas',
+        MES8:MES8+'_custo_base_vendas',
+        MES9:MES9+'_custo_base_vendas',
+        MES10:MES10+'_custo_base_vendas',
+        MES11:MES11+'_custo_base_vendas',
+        MES12:MES12+'_custo_base_vendas'
     })
 
     custo_base_vendas = custo_base_vendas.fillna(0)
@@ -357,9 +357,9 @@ def incluir_custo_preco_base_rfc(df_rfc, df_custo_base_vendas, df_custo_ppc, df_
 def definir_custo(df_rfc_custo_preco):
 
     num_cols = [
-        mes1 + '_custo_base_vendas', mes2 + '_custo_base_vendas', mes3 + '_custo_base_vendas', mes4 + '_custo_base_vendas',
-        mes5 + '_custo_base_vendas', mes6 + '_custo_base_vendas', mes7 + '_custo_base_vendas', mes8 + '_custo_base_vendas',
-        mes9 + '_custo_base_vendas', mes10 + '_custo_base_vendas', mes11 + '_custo_base_vendas', mes12 + '_custo_base_vendas',
+        MES1 + '_custo_base_vendas', MES2 + '_custo_base_vendas', MES3 + '_custo_base_vendas', MES4 + '_custo_base_vendas',
+        MES5 + '_custo_base_vendas', MES6 + '_custo_base_vendas', MES7 + '_custo_base_vendas', MES8 + '_custo_base_vendas',
+        MES9 + '_custo_base_vendas', MES10 + '_custo_base_vendas', MES11 + '_custo_base_vendas', MES12 + '_custo_base_vendas',
         'custo_ppc'
         ]
     for col in num_cols:
@@ -373,53 +373,53 @@ def definir_custo(df_rfc_custo_preco):
             custo_final.append(row['custo_ppc'])
             criterio_custo.append('PPC')
 
-        elif (row[mes1 + '_custo_base_vendas'] > 0):
-            custo_final.append(row[mes1 + '_custo_base_vendas'])
-            criterio_custo.append(mes1)
+        elif (row[MES1 + '_custo_base_vendas'] > 0):
+            custo_final.append(row[MES1 + '_custo_base_vendas'])
+            criterio_custo.append(MES1)
 
-        elif (row[mes2 + '_custo_base_vendas'] > 0):
-            custo_final.append(row[mes2 + '_custo_base_vendas'])
-            criterio_custo.append(mes2)
+        elif (row[MES2 + '_custo_base_vendas'] > 0):
+            custo_final.append(row[MES2 + '_custo_base_vendas'])
+            criterio_custo.append(MES2)
 
-        elif (row[mes3 + '_custo_base_vendas'] > 0):
-            custo_final.append(row[mes3 + '_custo_base_vendas'])
-            criterio_custo.append(mes3)
+        elif (row[MES3 + '_custo_base_vendas'] > 0):
+            custo_final.append(row[MES3 + '_custo_base_vendas'])
+            criterio_custo.append(MES3)
 
-        elif (row[mes4 + '_custo_base_vendas'] > 0):
-            custo_final.append(row[mes4 + '_custo_base_vendas'])
-            criterio_custo.append(mes4)
+        elif (row[MES4 + '_custo_base_vendas'] > 0):
+            custo_final.append(row[MES4 + '_custo_base_vendas'])
+            criterio_custo.append(MES4)
 
-        elif (row[mes5 + '_custo_base_vendas'] > 0):
-            custo_final.append(row[mes5 + '_custo_base_vendas'])
-            criterio_custo.append(mes5)
+        elif (row[MES5 + '_custo_base_vendas'] > 0):
+            custo_final.append(row[MES5 + '_custo_base_vendas'])
+            criterio_custo.append(MES5)
 
-        elif (row[mes6 + '_custo_base_vendas'] > 0):
-            custo_final.append(row[mes6 + '_custo_base_vendas'])
-            criterio_custo.append(mes6)
+        elif (row[MES6 + '_custo_base_vendas'] > 0):
+            custo_final.append(row[MES6 + '_custo_base_vendas'])
+            criterio_custo.append(MES6)
 
-        elif (row[mes7 + '_custo_base_vendas'] > 0):
-            custo_final.append(row[mes7 + '_custo_base_vendas'])
-            criterio_custo.append(mes7)
+        elif (row[MES7 + '_custo_base_vendas'] > 0):
+            custo_final.append(row[MES7 + '_custo_base_vendas'])
+            criterio_custo.append(MES7)
 
-        elif (row[mes8 + '_custo_base_vendas'] > 0):
-            custo_final.append(row[mes8 + '_custo_base_vendas'])
-            criterio_custo.append(mes8)
+        elif (row[MES8 + '_custo_base_vendas'] > 0):
+            custo_final.append(row[MES8 + '_custo_base_vendas'])
+            criterio_custo.append(MES8)
 
-        elif (row[mes9 + '_custo_base_vendas'] > 0):
-            custo_final.append(row[mes9 + '_custo_base_vendas'])
-            criterio_custo.append(mes9)
+        elif (row[MES9 + '_custo_base_vendas'] > 0):
+            custo_final.append(row[MES9 + '_custo_base_vendas'])
+            criterio_custo.append(MES9)
 
-        elif (row[mes10 + '_custo_base_vendas'] > 0):
-            custo_final.append(row[mes10 + '_custo_base_vendas'])
-            criterio_custo.append(mes10)
+        elif (row[MES10 + '_custo_base_vendas'] > 0):
+            custo_final.append(row[MES10 + '_custo_base_vendas'])
+            criterio_custo.append(MES10)
 
-        elif (row[mes11 + '_custo_base_vendas'] > 0):
-            custo_final.append(row[mes11 + '_custo_base_vendas'])
-            criterio_custo.append(mes11)
+        elif (row[MES11 + '_custo_base_vendas'] > 0):
+            custo_final.append(row[MES11 + '_custo_base_vendas'])
+            criterio_custo.append(MES11)
 
-        elif (row[mes12 + '_custo_base_vendas'] > 0):
-            custo_final.append(row[mes12 + '_custo_base_vendas'])
-            criterio_custo.append(mes12)
+        elif (row[MES12 + '_custo_base_vendas'] > 0):
+            custo_final.append(row[MES12 + '_custo_base_vendas'])
+            criterio_custo.append(MES12)
 
         else:
             custo_final.append(0)
@@ -429,9 +429,9 @@ def definir_custo(df_rfc_custo_preco):
     df_rfc_custo_preco['criterio_custo'] = criterio_custo
 
     df_rfc_custo_preco = df_rfc_custo_preco.drop([
-        mes1 + '_custo_base_vendas', mes2 + '_custo_base_vendas', mes3 + '_custo_base_vendas', mes4 + '_custo_base_vendas',
-        mes5 + '_custo_base_vendas', mes6 + '_custo_base_vendas', mes7 + '_custo_base_vendas', mes8 + '_custo_base_vendas',
-        mes9 + '_custo_base_vendas', mes10 + '_custo_base_vendas', mes11 + '_custo_base_vendas', mes12 + '_custo_base_vendas',
+        MES1 + '_custo_base_vendas', MES2 + '_custo_base_vendas', MES3 + '_custo_base_vendas', MES4 + '_custo_base_vendas',
+        MES5 + '_custo_base_vendas', MES6 + '_custo_base_vendas', MES7 + '_custo_base_vendas', MES8 + '_custo_base_vendas',
+        MES9 + '_custo_base_vendas', MES10 + '_custo_base_vendas', MES11 + '_custo_base_vendas', MES12 + '_custo_base_vendas',
         'custo_ppc'
         ], axis=1)
 

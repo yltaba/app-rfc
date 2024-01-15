@@ -29,7 +29,7 @@ with st.expander("Read more:"):
     )
 
 # parâmetros e bases
-MES0 = '01-2024'
+MES0 = '1-2024'
 MES1 = '12-2023'
 MES2 = '11-2023'
 MES3 = '10-2023'
