@@ -6,11 +6,12 @@ from openpyxl import load_workbook
 import funcoes_rfc
 
 
-hoje = '15012024'
+hoje = '16012024'
 arquivo_output = 'rfc_02_lan'
 
-
 # apresentação app
+
+st.image('inputs/CALDIC_Logo_Orange_RGB.jpg')
 st.title("RFC LAN - Volume Valuation Model")
 st.subheader("Caldic LATAM - Business Analytics")
 
@@ -55,12 +56,12 @@ l12m = [MES1, MES2, MES3, MES4, MES5, MES6, MES7, MES8, MES9, MES10, MES11, MES1
 
 
 # Imports
-PATH = r'C:/Users/y.lucatelli.CALDICCGN/Caldic Global/Business Analytics - Documentos/Python_Consultas/projetos_python/01_RFC/LAN/2024/RFC 1/bases/'
+
 BASE_PPC = 'Adherence Details by Product.xlsx'
 BASE_VENDAS = 'vendas_commercial_performance.xlsx'
 
-test_comercial = pd.read_excel(BASE_VENDAS, sheet_name='base_modelo')
-ppc = pd.read_excel(BASE_PPC)
+test_comercial = pd.read_excel('inputs/' + BASE_VENDAS, sheet_name='base_modelo')
+ppc = pd.read_excel('inputs/' + BASE_PPC)
 rfc_uploaded = st.file_uploader("Insira o arquivo com volumes:" )
 de_para_bu = pd.read_excel('DexPara nueva estructura.xlsx')
 
