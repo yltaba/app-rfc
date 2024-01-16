@@ -22,14 +22,14 @@ with st.expander("Read more:"):
 
         *Instructions:*
 
-            1. Upload the RFC file with the volumes. 
+            1. Upload the RFC file with planned volumes. 
             This file must have only one tab and must begin at line 1.
-            It also must to fit with RFC Sales Plan template.
+            It also must to fit to RFC Sales Plan template.
 
             2. Wait for file upload.
 
             3. When uploaded, a button called "Run valuation" will pop up. 
-            Press it and wait.
+            Press it and wait. A running icon will appear in the top left.
 
             4. Output table with valuated volumes will be available to download.
         """
