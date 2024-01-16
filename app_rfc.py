@@ -11,9 +11,9 @@ arquivo_output = 'rfc_02_lan'
 
 # apresentação app
 
-st.image('inputs/CALDIC_Logo_Orange_RGB.jpg')
+st.image('inputs/CALDIC_Logo_Orange_RGB.jpg', width=250)
 st.title("RFC LAN - Volume Valuation Model")
-st.subheader("Caldic LATAM - Business Analytics")
+st.subheader("Business Analytics")
 
 with st.expander("Read more:"):
     st.markdown(
@@ -63,7 +63,7 @@ BASE_VENDAS = 'vendas_commercial_performance.xlsx'
 test_comercial = pd.read_excel('inputs/' + BASE_VENDAS, sheet_name='base_modelo')
 ppc = pd.read_excel('inputs/' + BASE_PPC)
 rfc_uploaded = st.file_uploader("Insira o arquivo com volumes:" )
-de_para_bu = pd.read_excel('DexPara nueva estructura.xlsx')
+de_para_bu = pd.read_excel('inputs/DexPara nueva estructura.xlsx')
 
 
 # valorização
